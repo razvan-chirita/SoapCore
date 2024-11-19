@@ -31,11 +31,11 @@ namespace SoapCore
 			_serializer = serializer;
 			_operation = operation;
 			_serviceNamespace = operation.Contract.Namespace;
-			_envelopeName = operation.Name + "Response";
+			_envelopeName = operation.ResponseEnvelopeName;
 			_resultName = operation.ReturnName;
 			_result = result;
 			_outResults = outResults ?? new Dictionary<string, object>();
-			_skipResponseEnvelope = skipResponseEnvelope;
+			_skipResponseEnvelope = operation.SkipResponseEnvelope ?? skipResponseEnvelope;
 		}
 
 		protected override void OnWriteBodyContents(XmlDictionaryWriter writer)

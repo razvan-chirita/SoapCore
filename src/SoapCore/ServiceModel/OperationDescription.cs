@@ -7,15 +7,19 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using SoapCore.Attributes;
 
 namespace SoapCore.ServiceModel
 {
 	public class OperationDescription
 	{
-		public OperationDescription(ContractDescription contract, MethodInfo operationMethod, OperationContractAttribute contractAttribute, bool generateSoapActionWithoutContractName)
+		public OperationDescription(ContractDescription contract, MethodInfo operationMethod, OperationContractAttribute contractAttribute, OperationContractExtensionAttribute customContractAttribute, bool generateSoapActionWithoutContractName)
 		{
 			Contract = contract;
 			Name = contractAttribute.Name ?? GetNameByAction(contractAttribute.Action) ?? GetNameByMethod(operationMethod);
+
+			ResponseEnvelopeName = customContractAttribute.ResponseEnvelopeName ?? Name + "Response";
+			SkipResponseEnvelope = customContractAttribute.SkipResponseEnvelope;
 
 			if (contractAttribute.Action != null)
 			{
@@ -91,6 +95,8 @@ namespace SoapCore.ServiceModel
 		public string SoapAction { get; private set; }
 		public string ReplyAction { get; private set; }
 		public string Name { get; private set; }
+		public string ResponseEnvelopeName { get; private set; }
+		public bool? SkipResponseEnvelope { get; private set; }
 		public MethodInfo DispatchMethod { get; private set; }
 		public bool IsOneWay { get; private set; }
 		public bool IsMessageContractResponse { get; private set; }

@@ -1549,9 +1549,13 @@ namespace SoapCore.Meta
 
 			if (schemaNamespace != objectNamespace)
 			{
+				//if (!string.IsNullOrWhiteSpace(objectNamespace))
+				//{
 				var ns = $"q{_namespaceCounter++}";
 				writer.WriteXmlnsAttribute($"{ns}", GetDataContractNamespace(type));
 				writer.WriteAttributeString("type", $"{ns}:{typeName}");
+
+				//}
 			}
 			else
 			{

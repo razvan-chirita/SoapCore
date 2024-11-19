@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
+using SoapCore.Attributes;
 
 namespace SoapCore.ServiceModel
 {
@@ -20,7 +22,10 @@ namespace SoapCore.ServiceModel
 			{
 				foreach (var operationContract in operationMethodInfo.GetCustomAttributes<OperationContractAttribute>())
 				{
-					operations.Add(new OperationDescription(this, operationMethodInfo, operationContract, generateSoapActionWithoutContractName));
+					var customOperationContract = operationMethodInfo.GetCustomAttributes<OperationContractExtensionAttribute>().FirstOrDefault();
+					customOperationContract = customOperationContract ?? new OperationContractExtensionAttribute();
+
+					operations.Add(new OperationDescription(this, operationMethodInfo, operationContract, customOperationContract, generateSoapActionWithoutContractName));
 				}
 			}
 

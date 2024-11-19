@@ -707,6 +707,8 @@ namespace SoapCore
 				.GetServiceKnownTypesHierarchy()
 				.Select(x => x.Type);
 
+			// arguments are deserialized here
+			// so any pre-request breakpoints can be set in this method
 			if (!operation.IsMessageContractRequest)
 			{
 				if (xmlReader != null)
@@ -865,6 +867,7 @@ namespace SoapCore
 
 			var wrapperObject = Activator.CreateInstance(parameterInfo.Parameter.ParameterType);
 
+			// header deserialization
 			for (var i = 0; i < requestMessage.Headers.Count; i++)
 			{
 				var header = requestMessage.Headers[i];
@@ -899,6 +902,7 @@ namespace SoapCore
 				xmlReader.Read();
 			}
 
+			// body member deserialization
 			foreach (var messageBodyMember in messageBodyMembers)
 			{
 				var messageBodyMemberAttribute = messageBodyMember.MessageBodyMemberAttribute;
