@@ -1,6 +1,7 @@
-# SoapCore
+# SoapCoreExt (SoapCore with extensions)
 
-[![NuGet Version](https://img.shields.io/nuget/v/SoapCore.svg)](https://www.nuget.org/packages/SoapCore/) ![](https://github.com/DigDes/SoapCore/workflows/CI/badge.svg) [![Stack Overflow](https://img.shields.io/badge/stackoverflow-questions-blue?logo=stackoverflow)](https://stackoverflow.com/questions/tagged/soapcore)
+[![NuGet Version](https://img.shields.io/nuget/v/SoapCoreExt.svg)](https://www.nuget.org/packages/SoapCoreExt/) ![](https://github.com/DigDes/SoapCoreExt/workflows/CI/badge.svg) 
+<!-- [![Stack Overflow](https://img.shields.io/badge/stackoverflow-questions-blue?logo=stackoverflow)](https://stackoverflow.com/questions/tagged/soapcore) -->
 
 SOAP protocol middleware for ASP.NET Core
 
@@ -20,9 +21,9 @@ The following frameworks are supported:
 
 ### Installing
 
-`PM> Install-Package SoapCore`
+`PM> Install-Package SoapCoreExt`
 
-There are 2 different ways of adding SoapCore to your ASP.NET Core website. If you are using ASP.NET Core 3.1 or higher with endpoint routing enabled (the default):
+<!-- There are 2 different ways of adding SoapCore to your ASP.NET Core website. If you are using ASP.NET Core 3.1 or higher with endpoint routing enabled (the default):
 
 In Startup.cs:
 
@@ -321,3 +322,4 @@ See [Contributing guide](CONTRIBUTING.md)
 </a>
 
 Made with [contributors-img](https://contributors-img.web.app).
+-->
