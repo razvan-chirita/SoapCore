@@ -209,9 +209,10 @@ namespace SoapCore
 								xElement.WriteTo(writer);
 								writer.WriteEndElement();
 							}
-							//https://github.com/DigDes/SoapCore/issues/385
 							else if (_operation.DispatchMethod.GetCustomAttribute<XmlSerializerFormatAttribute>()?.Style == OperationFormatStyle.Rpc)
 							{
+								/* https://github.com/DigDes/SoapCore/issues/385 */
+
 								var importer = new SoapReflectionImporter(_serviceNamespace);
 								var typeMapping = importer.ImportTypeMapping(resultType);
 								var accessor = typeMapping.GetType().GetProperty("Accessor", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(typeMapping);
